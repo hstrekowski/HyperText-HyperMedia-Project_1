@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Hobby_Czytelnicze imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
+<Hobby_Czytelnicze xmlns="http://example.org/hobby"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://example.org/hobby ksiazki.xsd"
+    imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
     <Podsumowanie>
         <Opis>
             <Tekst>Czytanie to dla mnie forma relaksu i poszerzania wiedzy.</Tekst>
