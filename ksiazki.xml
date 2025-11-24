@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Hobby_Czytelnicze imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
     <Podsumowanie>
         <Opis>
@@ -27,7 +26,7 @@
         <Przyklad_Autora>Agatha Christie</Przyklad_Autora>
     </Ulubiony_Gatunek>
 
-    <Przeczytana_Ksiazka id="101" status="przeczytana" ocena="5">
+    <Ksiazka id="101" status="przeczytana" ocena="5">
         <Tytul jezyk="pl">Władca Pierścieni: Drużyna Pierścienia</Tytul>
         <Autor>
             <Imie>J.R.R.</Imie>
@@ -47,18 +46,19 @@
             <ISBN>978-0618260218</ISBN>
         </Dane_Wydawnicze>
         <Media>
-            <Miniatura>
-                <Zdjecie url="sciezka/do/zdjecia/wladca_pierscieni.jpg" rozmiar="small"> [Okładka
-                    książki: Władca Pierścieni: Drużyna Pierścienia] </Zdjecie>
-            </Miniatura>
+            <Okładka>
+                <Zdjecie url="sciezka/do/zdjecia/wladca_pierscieni.jpg" format="jpeg">
+                    [Okładka książki: Władca Pierścieni: Drużyna Pierścienia]
+                </Zdjecie>
+            </Okładka>
             <Recenzja>
                 <Link typ="video" url="https://www.youtube.com/watch?v=jakis_kod_video"> Recenzja na
                     YouTube </Link>
             </Recenzja>
         </Media>
-    </Przeczytana_Ksiazka>
+    </Ksiazka>
 
-    <Przeczytana_Ksiazka id="K102" status="przeczytana" ocena="4">
+    <Ksiazka id="K102" status="przeczytana" ocena="4">
         <Tytul jezyk="en">Murder on the Orient Express</Tytul>
         <Autor>
             <Imie>Agatha</Imie>
@@ -69,16 +69,19 @@
         </Dane_Wydawnicze>
         <Media>
             <Okładka>
-                <Zdjecie url="sciezka/do/zdjecia/morderstwo_ekspres.jpg" format="jpeg"> [Okładka
-                    książki: Murder on the Orient Express] </Zdjecie>
+                <Zdjecie url="sciezka/do/zdjecia/morderstwo_ekspres.jpg" format="jpeg">
+                    [Okładkaksiążki: Murder on the Orient Express]
+                </Zdjecie>
             </Okładka>
-            <Informacje_o_Autorze>
-                <Link typ="wiki" url="https://pl.wikipedia.org/wiki/Agatha_Christie"> Profil Autorki </Link>
-            </Informacje_o_Autorze>
+            <Recenzja>
+                <Link typ="video" url="https://www.youtube.com/watch?v=jakis_kod_video">
+                    Recenzja na YouTube
+                </Link>
+            </Recenzja>
         </Media>
-    </Przeczytana_Ksiazka>
+    </Ksiazka>
 
-    <Przeczytana_Ksiazka id="K103" status="w_trakcie">
+    <Ksiazka id="K103" status="w_trakcie">
         <Tytul jezyk="pl">Sapiens: Od zwierząt do bogów</Tytul>
         <Autor>
             <Imie>Yuval Noah</Imie>
@@ -88,13 +91,16 @@
             <Rok_Wydania>2011</Rok_Wydania>
         </Dane_Wydawnicze>
         <Media>
-            <Sklep>
-                <Link typ="sklep" url="https://sklep.ksiazka.pl/sapiens"> Sprawdź cenę </Link>
-            </Sklep>
-            <Portret_Autora>
-                <Zdjecie url="sciezka/do/zdjecia/harari_portret.png" format="png"> [Portret Yuvala
-                    Noaha Harari] </Zdjecie>
-            </Portret_Autora>
+            <Okładka>
+                <Zdjecie url="sciezka/do/zdjecia/Sapiens.jpg" format="jpeg">
+                    [Okładka książki: Sapiens: Od zwierząt do bogów]
+                </Zdjecie>
+            </Okładka>
+            <Recenzja>
+                <Link typ="video" url="https://www.youtube.com/watch?v=jakis_kod_video">
+                    Recenzja na YouTube
+                </Link>
+            </Recenzja>
         </Media>
-    </Przeczytana_Ksiazka>
+    </Ksiazka>
 </Hobby_Czytelnicze>
