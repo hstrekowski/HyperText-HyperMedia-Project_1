@@ -133,7 +133,7 @@
             </Media>
         </Ksiazka>
 
-        <Ksiazka id="103" status="w_trakcie">
+        <Ksiazka id="103" status="w_trakcie" ocena="brak">
             <Tytul h:jezyk="pl">Sapiens: Od zwierząt do bogów</Tytul>
             <Ostatnie_Trzy_Oceny>4 5 5</Ostatnie_Trzy_Oceny>
             <Autor rola="kluczowy">

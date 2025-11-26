@@ -210,7 +210,7 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="ocena" type="OcenaType" use="optional" />
+        <xs:attribute name="ocena" type="OcenaLubTekstType" use="optional" />
     </xs:complexType>
 
     <xs:complexType name="PodsumowanieType">
@@ -266,6 +266,17 @@
     </xs:complexType>
 
     <!-- Simple Types -->
+
+    <xs:simpleType name="OcenaTekstType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="brak" />
+            <xs:enumeration value="w_trakcie_oceny" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="OcenaLubTekstType">
+        <xs:union memberTypes="OcenaType OcenaTekstType" />
+    </xs:simpleType>
 
     <xs:simpleType name="NazwaType">
         <xs:restriction base="xs:string">
