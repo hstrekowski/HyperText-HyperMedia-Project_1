@@ -4,6 +4,7 @@
     xmlns:h="http://example.org/hobby"
     xsi:schemaLocation="http://example.org/hobby ksiazki.xsd"
     imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
+
     <Podsumowanie>
         <Opis>
             <Opis_Rozwiniety>

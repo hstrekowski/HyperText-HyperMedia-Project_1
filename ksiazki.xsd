@@ -30,6 +30,7 @@
 
     <xs:element name="Hobby_Czytelnicze" type="HobbyCzytelniczeType" />
 
+
     <xs:complexType name="OsobaType" mixed="true">
         <xs:sequence>
             <xs:element name="Imie" type="NazwaType" />
@@ -46,62 +47,28 @@
         </xs:complexContent>
     </xs:complexType>
 
+    <xs:complexType name="StatystykaType">
+        <xs:simpleContent>
+            <xs:extension base="xs:nonNegativeInteger">
+                <xs:attribute name="jednostka" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="sztuk" />
+                            <xs:enumeration value="stron" />
+                            <xs:enumeration value="godzin" />
+                            <xs:enumeration value="książek" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+
     <xs:complexType name="StatystykiRoczneType">
         <xs:sequence>
-            <xs:element name="Liczba_Przeczytanych">
-                <xs:complexType>
-                    <xs:simpleContent>
-                        <xs:extension base="xs:nonNegativeInteger">
-                            <xs:attribute name="jednostka" use="required">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:enumeration value="sztuk" />
-                                        <xs:enumeration value="stron" />
-                                        <xs:enumeration value="godzin" />
-                                        <xs:enumeration value="książek" />
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:attribute>
-                        </xs:extension>
-                    </xs:simpleContent>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Liczba_Stron">
-                <xs:complexType>
-                    <xs:simpleContent>
-                        <xs:extension base="xs:nonNegativeInteger">
-                            <xs:attribute name="jednostka" use="required">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:enumeration value="sztuk" />
-                                        <xs:enumeration value="stron" />
-                                        <xs:enumeration value="godzin" />
-                                        <xs:enumeration value="książek" />
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:attribute>
-                        </xs:extension>
-                    </xs:simpleContent>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="Laczny_Czas_Czytania">
-                <xs:complexType>
-                    <xs:simpleContent>
-                        <xs:extension base="xs:nonNegativeInteger">
-                            <xs:attribute name="jednostka" use="required">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:enumeration value="sztuk" />
-                                        <xs:enumeration value="stron" />
-                                        <xs:enumeration value="godzin" />
-                                        <xs:enumeration value="książek" />
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:attribute>
-                        </xs:extension>
-                    </xs:simpleContent>
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="Liczba_Przeczytanych" type="StatystykaType" />
+            <xs:element name="Liczba_Stron" type="StatystykaType" />
+            <xs:element name="Laczny_Czas_Czytania" type="StatystykaType" />
         </xs:sequence>
         <xs:attribute name="rok" type="xs:gYear" use="required" />
     </xs:complexType>
@@ -265,7 +232,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Simple Types -->
 
     <xs:simpleType name="OcenaTekstType">
         <xs:restriction base="xs:string">
@@ -325,7 +291,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- Grupa -->
 
     <xs:group name="DaneWydawniczeGrupa">
         <xs:sequence>
@@ -350,11 +315,9 @@
         </xs:sequence>
     </xs:group>
 
-    <!-- Globalny atrybut -->
 
     <xs:attribute name="jezyk" type="JezykType" />
 
-    <!-- Lista -->
 
     <xs:simpleType name="OcenyListType">
         <xs:list itemType="OcenaType" />
