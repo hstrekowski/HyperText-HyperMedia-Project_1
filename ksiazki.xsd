@@ -30,7 +30,7 @@
 
     <xs:element name="Hobby_Czytelnicze" type="HobbyCzytelniczeType" />
 
-    <xs:complexType name="PersonType" mixed="true">
+    <xs:complexType name="OsobaType" mixed="true">
         <xs:sequence>
             <xs:element name="Imie" type="NazwaType" />
             <xs:element name="Nazwisko" type="NazwaType" />
@@ -40,7 +40,7 @@
 
     <xs:complexType name="AutorType" mixed="true">
         <xs:complexContent mixed="true">
-            <xs:extension base="PersonType">
+            <xs:extension base="OsobaType">
                 <xs:attribute name="rola" type="RolaAutoraType" use="required" />
             </xs:extension>
         </xs:complexContent>
@@ -338,7 +338,7 @@
         </xs:sequence>
     </xs:group>
 
-    <!-- Globalmy atrybut -->
+    <!-- Globalny atrybut -->
 
     <xs:attribute name="jezyk" type="JezykType" />
 
