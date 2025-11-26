@@ -5,12 +5,14 @@
     imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
     <Podsumowanie>
         <Opis>
-            <Tekst>Czytanie to dla mnie forma relaksu i poszerzania wiedzy.</Tekst>
-            <Korzysci>
-                <Punkt>Redukcja stresu</Punkt>
-                <Punkt>Rozwój słownictwa</Punkt>
-                <Punkt>Rozwój osobisty</Punkt>
-            </Korzysci>
+            <Opis_Rozwiniety>
+                <Tekst>Czytanie to dla mnie forma relaksu i poszerzania wiedzy.</Tekst>
+                <Korzysci>
+                    <Punkt>Redukcja stresu</Punkt>
+                    <Punkt>Rozwój słownictwa</Punkt>
+                    <Punkt>Rozwój osobisty</Punkt>
+                </Korzysci>
+            </Opis_Rozwiniety>
         </Opis>
         <Statystyki>
             <Statystyki_Roczne rok="2024">

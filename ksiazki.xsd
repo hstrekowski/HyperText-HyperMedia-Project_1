@@ -30,7 +30,7 @@
 
     <xs:element name="Hobby_Czytelnicze" type="HobbyCzytelniczeType" />
 
-    <xs:complexType name="AutorType">
+    <xs:complexType name="AutorType" mixed="true">
         <xs:sequence>
             <xs:element name="Imie" type="xs:string" />
             <xs:element name="Nazwisko" type="xs:string" />
@@ -122,10 +122,10 @@
                     <xs:sequence>
                         <xs:element name="Adres_Fizyczny">
                             <xs:complexType>
-                                <xs:sequence>
+                                <xs:all>
                                     <xs:element name="Kraj" type="xs:string" />
                                     <xs:element name="Miasto" type="xs:string" />
-                                </xs:sequence>
+                                </xs:all>
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
@@ -183,7 +183,7 @@
                                             <xs:attribute name="format" use="required">
                                                 <xs:simpleType>
                                                     <xs:restriction base="xs:string">
-                                                        <xs:enumeration value="jpg" />
+                                                        <xs:enumeration value="jpeg" />
                                                         <xs:enumeration value="png" />
                                                         <xs:enumeration value="webp" />
                                                     </xs:restriction>
@@ -228,16 +228,24 @@
         <xs:sequence>
             <xs:element name="Opis">
                 <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Tekst" type="xs:string" />
-                        <xs:element name="Korzysci" minOccurs="0">
+                    <xs:choice>
+                        <xs:element name="Opis_Krotki" type="xs:string" />
+                        <xs:element name="Opis_Rozwiniety">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="Punkt" type="xs:string" maxOccurs="unbounded" />
+                                    <xs:element name="Tekst" type="xs:string" />
+                                    <xs:element name="Korzysci" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="Punkt" type="xs:string"
+                                                    maxOccurs="unbounded" />
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
                                 </xs:sequence>
                             </xs:complexType>
                         </xs:element>
-                    </xs:sequence>
+                    </xs:choice>
                 </xs:complexType>
             </xs:element>
             <xs:element name="Statystyki">
