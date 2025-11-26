@@ -5,9 +5,30 @@
     elementFormDefault="qualified"
     attributeFormDefault="unqualified">
 
-    <xs:element name="Hobby_Czytelnicze">
+    <xs:complexType name="HobbyCzytelniczeType">
+        <xs:sequence>
+            <xs:element name="Podsumowanie" type="PodsumowanieType" />
+            <xs:element name="Ulubione_Gatunki">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Gatunek" type="GatunekType" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Ksiazki">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Ksiazka" type="KsiazkaType" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="imie_autora" type="xs:string" use="required" />
+        <xs:attribute name="nazwisko_autora" type="xs:string" use="required" />
+        <xs:attribute name="indeks_autora" type="IndeksAutoraType" use="required" />
+    </xs:complexType>
 
-    </xs:element>
+    <xs:element name="Hobby_Czytelnicze" type="HobbyCzytelniczeType" />
 
     <xs:complexType name="AutorType">
         <xs:sequence>
@@ -15,7 +36,7 @@
             <xs:element name="Nazwisko" type="xs:string" />
             <xs:element name="Narodowosc" type="xs:string" />
         </xs:sequence>
-        <xs:attribute name="rola" type="xs:string" use="required" />
+        <xs:attribute name="rola" type="RolaAutoraType" use="required" />
     </xs:complexType>
 
     <xs:complexType name="StatystykiRoczneType">
@@ -24,13 +45,56 @@
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:nonNegativeInteger">
-                            <xs:attribute name="jednostka" type="xs:string" use="required" />
+                            <xs:attribute name="jednostka" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="sztuk" />
+                                        <xs:enumeration value="stron" />
+                                        <xs:enumeration value="godzin" />
+                                        <xs:enumeration value="książek" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="Liczba_Stron" type="xs:string" />
-            <xs:element name="Laczny_Czas_Czytania" type="xs:string" />
+            <xs:element name="Liczba_Stron">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:nonNegativeInteger">
+                            <xs:attribute name="jednostka" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="sztuk" />
+                                        <xs:enumeration value="stron" />
+                                        <xs:enumeration value="godzin" />
+                                        <xs:enumeration value="książek" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Laczny_Czas_Czytania">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:nonNegativeInteger">
+                            <xs:attribute name="jednostka" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="sztuk" />
+                                        <xs:enumeration value="stron" />
+                                        <xs:enumeration value="godzin" />
+                                        <xs:enumeration value="książek" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
         <xs:attribute name="rok" type="xs:gYear" use="required" />
     </xs:complexType>
@@ -77,7 +141,7 @@
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
-                            <xs:attribute name="jezyk" type="xs:string" use="required" />
+                            <xs:attribute name="jezyk" type="JezykType" use="required" />
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -88,13 +152,66 @@
                     <xs:sequence>
                         <xs:element name="Rok_Wydania_Polskiego" type="xs:gYear" />
                         <xs:element name="Wydawnictwo" type="WydawnictwoType" />
-                        <xs:element name="ISBN" type="xs:anyType" />
+                        <xs:element name="ISBN">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:attribute name="typ" use="required">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="ISBN-10" />
+                                                    <xs:enumeration value="ISBN-13" />
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:attribute>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="Media" type="xs:anyType" />
+            <xs:element name="Media">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Okladka">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Zdjecie">
+                                        <xs:complexType>
+                                            <xs:attribute name="url" type="URLType" use="required" />
+                                            <xs:attribute name="format" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="jpg" />
+                                                        <xs:enumeration value="png" />
+                                                        <xs:enumeration value="webp" />
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Recenzja">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Link">
+                                        <xs:complexType>
+                                            <xs:attribute name="typ" type="xs:string" use="required" />
+                                            <xs:attribute name="url" type="URLType" use="required" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                                <xs:attribute name="jezyk" type="JezykType" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
-        <xs:attribute name="id" type="xs:ID" use="required" />
+        <xs:attribute name="id" type="xs:string" use="required" />
         <xs:attribute name="status" use="required">
             <xs:simpleType>
                 <xs:restriction base="xs:string">
@@ -104,7 +221,7 @@
                 </xs:restriction>
             </xs:simpleType>
         </xs:attribute>
-        <xs:attribute name="ocena" type="xs:integer" use="optional" />
+        <xs:attribute name="ocena" type="OcenaType" use="optional" />
     </xs:complexType>
 
     <xs:complexType name="PodsumowanieType">
@@ -113,7 +230,7 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Tekst" type="xs:string" />
-                        <xs:element name="Korzysci">
+                        <xs:element name="Korzysci" minOccurs="0">
                             <xs:complexType>
                                 <xs:sequence>
                                     <xs:element name="Punkt" type="xs:string" maxOccurs="unbounded" />
@@ -127,11 +244,70 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element name="Statystyki_Roczne" type="StatystykiRoczneType" />
-                        <xs:element name="Statystyki_Format" type="xs:anyType" />
+                        <xs:element name="Statystyki_Format">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Format" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:simpleContent>
+                                                <xs:extension base="ProcentType">
+                                                    <xs:attribute name="nazwa" type="xs:string"
+                                                        use="required" />
+                                                    <xs:attribute name="jednostka" type="xs:string"
+                                                        use="required" />
+                                                </xs:extension>
+                                            </xs:simpleContent>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+
+    <!-- Simple Types -->
+
+    <xs:simpleType name="OcenaType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1" />
+            <xs:maxInclusive value="5" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="IndeksAutoraType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{6}" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ProcentType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0" />
+            <xs:maxInclusive value="100" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="RolaAutoraType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="kluczowy" />
+            <xs:enumeration value="wazny" />
+            <xs:enumeration value="poboczny" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="URLType">
+        <xs:restriction base="xs:anyURI">
+            <xs:whiteSpace value="collapse" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="JezykType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z]{2}" />
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>
