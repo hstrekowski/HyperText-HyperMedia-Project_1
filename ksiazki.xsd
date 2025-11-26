@@ -9,4 +9,129 @@
 
     </xs:element>
 
+    <xs:complexType name="AutorType">
+        <xs:sequence>
+            <xs:element name="Imie" type="xs:string" />
+            <xs:element name="Nazwisko" type="xs:string" />
+            <xs:element name="Narodowosc" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="rola" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="StatystykiRoczneType">
+        <xs:sequence>
+            <xs:element name="Liczba_Przeczytanych">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:nonNegativeInteger">
+                            <xs:attribute name="jednostka" type="xs:string" use="required" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Liczba_Stron" type="xs:string" />
+            <xs:element name="Laczny_Czas_Czytania" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="rok" type="xs:gYear" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="GatunekType">
+        <xs:sequence>
+            <xs:element name="Nazwa" type="xs:string" />
+            <xs:element name="Opis" type="xs:string" />
+            <xs:element name="Przykladowi_Autorzy">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Autor" type="AutorType" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="priorytet" type="xs:positiveInteger" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="WydawnictwoType">
+        <xs:sequence>
+            <xs:element name="Nazwa_Skrocona" type="xs:string" />
+            <xs:element name="Siedziba_Glowna">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Adres_Fizyczny">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Kraj" type="xs:string" />
+                                    <xs:element name="Miasto" type="xs:string" />
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="nazwa_pelna" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="KsiazkaType">
+        <xs:sequence>
+            <xs:element name="Tytul">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="jezyk" type="xs:string" use="required" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Autor" type="AutorType" />
+            <xs:element name="Dane_Wydawnicze">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Rok_Wydania_Polskiego" type="xs:gYear" />
+                        <xs:element name="Wydawnictwo" type="WydawnictwoType" />
+                        <xs:element name="ISBN" type="xs:anyType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Media" type="xs:anyType" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required" />
+        <xs:attribute name="status" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="przeczytana" />
+                    <xs:enumeration value="w_trakcie" />
+                    <xs:enumeration value="do_przeczytania" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="ocena" type="xs:integer" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="PodsumowanieType">
+        <xs:sequence>
+            <xs:element name="Opis">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Tekst" type="xs:string" />
+                        <xs:element name="Korzysci">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="Punkt" type="xs:string" maxOccurs="unbounded" />
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Statystyki">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Statystyki_Roczne" type="StatystykiRoczneType" />
+                        <xs:element name="Statystyki_Format" type="xs:anyType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
 </xs:schema>
