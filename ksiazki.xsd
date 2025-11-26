@@ -153,6 +153,7 @@
                     </xs:simpleContent>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="Ostatnie_Trzy_Oceny" type="TrzyOcenyType" minOccurs="0" />
             <xs:element name="Autor" type="AutorType" />
             <xs:element name="Dane_Wydawnicze">
                 <xs:complexType>
@@ -341,5 +342,17 @@
     <!-- Globalny atrybut -->
 
     <xs:attribute name="jezyk" type="JezykType" />
+
+    <!-- Lista -->
+
+    <xs:simpleType name="OcenyListType">
+        <xs:list itemType="OcenaType" />
+    </xs:simpleType>
+
+    <xs:simpleType name="TrzyOcenyType">
+        <xs:restriction base="OcenyListType">
+            <xs:length value="3" />
+        </xs:restriction>
+    </xs:simpleType>
 
 </xs:schema>

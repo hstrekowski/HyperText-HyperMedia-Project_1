@@ -135,6 +135,7 @@
 
         <Ksiazka id="103" status="w_trakcie">
             <Tytul h:jezyk="pl">Sapiens: Od zwierząt do bogów</Tytul>
+            <Ostatnie_Trzy_Oceny>4 5 5</Ostatnie_Trzy_Oceny>
             <Autor rola="kluczowy">
                 <Imie>Yuval Noah</Imie>
                 <Nazwisko>Harari</Nazwisko>
