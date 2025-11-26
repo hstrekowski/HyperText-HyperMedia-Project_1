@@ -30,13 +30,20 @@
 
     <xs:element name="Hobby_Czytelnicze" type="HobbyCzytelniczeType" />
 
-    <xs:complexType name="AutorType" mixed="true">
+    <xs:complexType name="PersonType" mixed="true">
         <xs:sequence>
-            <xs:element name="Imie" type="NazwaAutoraType" />
-            <xs:element name="Nazwisko" type="NazwaAutoraType" />
+            <xs:element name="Imie" type="NazwaType" />
+            <xs:element name="Nazwisko" type="NazwaType" />
             <xs:element name="Narodowosc" type="xs:string" />
         </xs:sequence>
-        <xs:attribute name="rola" type="RolaAutoraType" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="AutorType" mixed="true">
+        <xs:complexContent mixed="true">
+            <xs:extension base="PersonType">
+                <xs:attribute name="rola" type="RolaAutoraType" use="required" />
+            </xs:extension>
+        </xs:complexContent>
     </xs:complexType>
 
     <xs:complexType name="StatystykiRoczneType">
@@ -259,7 +266,7 @@
 
     <!-- Simple Types -->
 
-    <xs:simpleType name="NazwaAutoraType">
+    <xs:simpleType name="NazwaType">
         <xs:restriction base="xs:string">
             <xs:minLength value="4" />
             <xs:maxLength value="40" />
