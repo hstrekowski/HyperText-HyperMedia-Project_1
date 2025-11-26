@@ -32,8 +32,8 @@
 
     <xs:complexType name="AutorType" mixed="true">
         <xs:sequence>
-            <xs:element name="Imie" type="xs:string" />
-            <xs:element name="Nazwisko" type="xs:string" />
+            <xs:element name="Imie" type="NazwaAutoraType" />
+            <xs:element name="Nazwisko" type="NazwaAutoraType" />
             <xs:element name="Narodowosc" type="xs:string" />
         </xs:sequence>
         <xs:attribute name="rola" type="RolaAutoraType" use="required" />
@@ -141,7 +141,7 @@
                 <xs:complexType>
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
-                            <xs:attribute name="jezyk" type="JezykType" use="required" />
+                            <xs:attribute ref="jezyk" use="required" />
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -149,26 +149,7 @@
             <xs:element name="Autor" type="AutorType" />
             <xs:element name="Dane_Wydawnicze">
                 <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Rok_Wydania_Polskiego" type="xs:gYear" />
-                        <xs:element name="Wydawnictwo" type="WydawnictwoType" />
-                        <xs:element name="ISBN">
-                            <xs:complexType>
-                                <xs:simpleContent>
-                                    <xs:extension base="xs:string">
-                                        <xs:attribute name="typ" use="required">
-                                            <xs:simpleType>
-                                                <xs:restriction base="xs:string">
-                                                    <xs:enumeration value="ISBN-10" />
-                                                    <xs:enumeration value="ISBN-13" />
-                                                </xs:restriction>
-                                            </xs:simpleType>
-                                        </xs:attribute>
-                                    </xs:extension>
-                                </xs:simpleContent>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
+                    <xs:group ref="DaneWydawniczeGrupa" />
                 </xs:complexType>
             </xs:element>
             <xs:element name="Media">
@@ -204,7 +185,7 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
-                                <xs:attribute name="jezyk" type="JezykType" use="required" />
+                                <xs:attribute ref="jezyk" use="required" />
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
@@ -278,6 +259,13 @@
 
     <!-- Simple Types -->
 
+    <xs:simpleType name="NazwaAutoraType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="4" />
+            <xs:maxLength value="40" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="OcenaType">
         <xs:restriction base="xs:integer">
             <xs:minInclusive value="1" />
@@ -317,5 +305,34 @@
             <xs:pattern value="[a-z]{2}" />
         </xs:restriction>
     </xs:simpleType>
+
+    <!-- Grupa -->
+
+    <xs:group name="DaneWydawniczeGrupa">
+        <xs:sequence>
+            <xs:element name="Rok_Wydania_Polskiego" type="xs:gYear" />
+            <xs:element name="Wydawnictwo" type="WydawnictwoType" />
+            <xs:element name="ISBN">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="typ" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="ISBN-10" />
+                                        <xs:enumeration value="ISBN-13" />
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+
+    <!-- Globalmy atrybut -->
+
+    <xs:attribute name="jezyk" type="JezykType" />
 
 </xs:schema>

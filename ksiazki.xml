@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Hobby_Czytelnicze xmlns="http://example.org/hobby"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:h="http://example.org/hobby"
     xsi:schemaLocation="http://example.org/hobby ksiazki.xsd"
     imie_autora="Hubert" nazwisko_autora="Strękowski" indeks_autora="208381">
     <Podsumowanie>
@@ -71,7 +72,7 @@
 
     <Ksiazki>
         <Ksiazka id="101" status="przeczytana" ocena="5">
-            <Tytul jezyk="pl">Władca Pierścieni: Drużyna Pierścienia</Tytul>
+            <Tytul h:jezyk="pl">Władca Pierścieni: Drużyna Pierścienia</Tytul>
             <Autor rola="kluczowy">
                 <Imie>J.R.R.</Imie>
                 <Nazwisko>Tolkien</Nazwisko>
@@ -94,7 +95,7 @@
                 <Okladka>
                     <Zdjecie url="img/wladca_pierscieni.jpg" format="jpeg" />
                 </Okladka>
-                <Recenzja jezyk="pl">
+                <Recenzja h:jezyk="pl">
                     <Link typ="strona"
                         url="https://nakanapie.pl/recenzje/wladca-pierscieni-druzyna-pierscienia-j-r-r-tol-wladca-pierscieni-t-1-druzyna-pierscienia" />
                 </Recenzja>
@@ -102,7 +103,7 @@
         </Ksiazka>
 
         <Ksiazka id="102" status="przeczytana" ocena="4">
-            <Tytul jezyk="en">Murder on the Orient Express</Tytul>
+            <Tytul h:jezyk="en">Murder on the Orient Express</Tytul>
             <Autor rola="kluczowy">
                 <Imie>Agatha</Imie>
                 <Nazwisko>Christie</Nazwisko>
@@ -125,7 +126,7 @@
                 <Okladka>
                     <Zdjecie url="img/morderstwo_ekspres.jpg" format="jpeg" />
                 </Okladka>
-                <Recenzja jezyk="en">
+                <Recenzja h:jezyk="en">
                     <Link typ="strona"
                         url="https://warmdayswillnevercease.wordpress.com/2020/03/19/book-review-murder-on-the-orient-express-by-agatha-christie/" />
                 </Recenzja>
@@ -133,7 +134,7 @@
         </Ksiazka>
 
         <Ksiazka id="103" status="w_trakcie">
-            <Tytul jezyk="pl">Sapiens: Od zwierząt do bogów</Tytul>
+            <Tytul h:jezyk="pl">Sapiens: Od zwierząt do bogów</Tytul>
             <Autor rola="kluczowy">
                 <Imie>Yuval Noah</Imie>
                 <Nazwisko>Harari</Nazwisko>
@@ -156,7 +157,7 @@
                 <Okladka>
                     <Zdjecie url="img/sapiens.jpg" format="jpeg" />
                 </Okladka>
-                <Recenzja jezyk="pl">
+                <Recenzja h:jezyk="pl">
                     <Link typ="video" url="https://www.youtube.com/watch?v=xoN9uowJ_pA" />
                 </Recenzja>
             </Media>
