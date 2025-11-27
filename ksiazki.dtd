@@ -1,0 +1,101 @@
+<!ENTITY % dane_autora "(Imie, Nazwisko, Narodowosc)">
+<!ENTITY % dane_wydawnicze "(Rok_Wydania_Polskiego, Wydawnictwo, ISBN)">
+
+<!ELEMENT Hobby_Czytelnicze (Podsumowanie, Ulubione_Gatunki, Ksiazki)>
+
+<!ATTLIST Hobby_Czytelnicze
+    imie_autora CDATA #REQUIRED
+    nazwisko_autora CDATA #REQUIRED
+    indeks_autora CDATA #REQUIRED
+    data_utworzenia CDATA #IMPLIED
+    walidator CDATA "DTD"
+    wersja_struktury (1.0 | 2.0) "1.0" 
+>
+
+<!ELEMENT Podsumowanie (Opis, Statystyki)>
+<!ELEMENT Opis (Opis_Krotki | Opis_Rozwiniety)>
+<!ELEMENT Opis_Krotki (#PCDATA)>
+<!ELEMENT Opis_Rozwiniety (Tekst, Korzysci?)>
+<!ELEMENT Tekst (#PCDATA)>
+<!ELEMENT Korzysci (Punkt+)>
+<!ELEMENT Punkt (#PCDATA)>
+
+<!ELEMENT Statystyki (Statystyki_Roczne, Statystyki_Format)>
+<!ELEMENT Statystyki_Roczne (Liczba_Przeczytanych, Liczba_Stron, Laczny_Czas_Czytania)>
+<!ATTLIST Statystyki_Roczne rok CDATA #REQUIRED
+>
+<!ELEMENT Liczba_Przeczytanych (#PCDATA)>
+<!ELEMENT Liczba_Stron (#PCDATA)>
+<!ELEMENT Laczny_Czas_Czytania (#PCDATA)>
+
+<!ATTLIST Liczba_Przeczytanych jednostka (sztuk | stron | godzin | książek) #REQUIRED
+>
+<!ATTLIST Liczba_Stron jednostka (sztuk | stron | godzin | książek) #REQUIRED
+>
+<!ATTLIST Laczny_Czas_Czytania jednostka (sztuk | stron | godzin | książek) #REQUIRED
+>
+
+<!ELEMENT Statystyki_Format (Format+)>
+<!ELEMENT Format (#PCDATA)>
+<!ATTLIST Format
+    nazwa CDATA #REQUIRED
+    jednostka CDATA #REQUIRED
+>
+
+<!ELEMENT Ulubione_Gatunki (Gatunek+)>
+<!ELEMENT Gatunek (Nazwa, Opis_Gatunku, Przykladowi_Autorzy)>
+<!ATTLIST Gatunek priorytet CDATA #REQUIRED
+>
+<!ELEMENT Nazwa (#PCDATA)>
+<!ELEMENT Opis_Gatunku (#PCDATA)>
+<!ELEMENT Przykladowi_Autorzy (Autor+)>
+
+<!ELEMENT Autor (%dane_autora;)>
+<!ATTLIST Autor rola (kluczowy | wazny | poboczny) #REQUIRED
+>
+<!ELEMENT Imie (#PCDATA)>
+<!ELEMENT Nazwisko (#PCDATA)>
+<!ELEMENT Narodowosc (#PCDATA)>
+
+<!ELEMENT Ksiazki (Ksiazka+)>
+<!ELEMENT Ksiazka (Tytul, Ostatnie_Trzy_Oceny?, Autor, Dane_Wydawnicze, Media)>
+<!ATTLIST Ksiazka
+    id CDATA #REQUIRED
+    status (przeczytana | w_trakcie | do_przeczytania) #REQUIRED
+    ocena CDATA #IMPLIED
+>
+
+<!ELEMENT Tytul (#PCDATA)>
+<!ATTLIST Tytul jezyk CDATA #REQUIRED
+>
+<!ELEMENT Ostatnie_Trzy_Oceny (#PCDATA)>
+
+<!ELEMENT Dane_Wydawnicze (%dane_wydawnicze;)>
+<!ELEMENT Rok_Wydania_Polskiego (#PCDATA)>
+<!ELEMENT Wydawnictwo (Nazwa_Skrocona, Siedziba_Glowna)>
+<!ATTLIST Wydawnictwo nazwa_pelna CDATA #REQUIRED
+>
+<!ELEMENT Nazwa_Skrocona (#PCDATA)>
+<!ELEMENT Siedziba_Glowna (Adres_Fizyczny)>
+<!ELEMENT Adres_Fizyczny (Kraj, Miasto)>
+<!ELEMENT Kraj (#PCDATA)>
+<!ELEMENT Miasto (#PCDATA)>
+
+<!ELEMENT ISBN (#PCDATA)>
+<!ATTLIST ISBN typ (ISBN-10 | ISBN-13) #REQUIRED
+>
+
+<!ELEMENT Media (Okladka, Recenzja)>
+<!ELEMENT Okladka (Zdjecie)>
+<!ELEMENT Zdjecie EMPTY>
+<!ATTLIST Zdjecie
+    url CDATA #REQUIRED
+    format (jpeg | png | webp) #REQUIRED
+>
+<!ELEMENT Recenzja (Link)>
+<!ATTLIST Recenzja jezyk CDATA #REQUIRED
+>
+<!ELEMENT Link EMPTY>
+<!ATTLIST Link
+    typ (strona | video) "strona"
+    url CDATA #REQUIRED>
