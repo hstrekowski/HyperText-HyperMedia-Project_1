@@ -1,75 +1,71 @@
-# Projekt HiH — Hipertekst i Hipermedia
+# HiH Project — Hypertext and Hypermedia
 
-## Model XML: _Hobby czytelnicze_
+## XML Model: _Reading Hobby_
 
-Projekt wykonany na potrzeby przedmiotu **Hipertekst i Hipermedia**. Repozytorium prezentuje kompletny przykład modelowania informacji w XML, wraz z walidacją w oparciu o **DTD** i **XML Schema (XSD)**.  
-Przykład opisuje _hobby czytelnicze_ autora oraz zestaw książek wzbogacony o elementy multimedialne i strukturę hipertekstową.
-
----
-
-## 📂 Zawartość repozytorium
-
-- **`ksiazki.xml`** – główny dokument XML opisujący hobby czytelnicze:
-
-  - dane o autorze (metadane),
-  - podsumowanie i statystyki czytelnicze,
-  - ulubione gatunki wraz z autorami,
-  - lista książek z:
-    - pełnymi danymi bibliograficznymi,
-    - odwołaniami do elementów multimedialnych,
-    - linkami (hipertekst) do recenzji / filmów,
-    - atrybutami oceny, statusu itd.
-
-- **`ksiazki.dtd`** – definicja DTD opisująca dopuszczalną strukturę:
-
-  - model dokumentu i elementów,
-  - typy zawartości,
-  - wymagane oraz opcjonalne elementy i atrybuty.
-
-- **`ksiazki.xsd`** – schemat XML Schema 1.0:
-  - dokładne typowanie danych (np. liczby, daty, jednostki),
-  - walidacja struktur zagnieżdżonych,
-  - definicje przestrzeni nazw.
+Project created for the **Hypertext and Hypermedia** course. This repository presents a complete example of information modeling in XML, featuring validation based on **DTD** and **XML Schema (XSD)**.
+The example describes the author's _reading hobby_ and a collection of books, enriched with multimedia elements and hypertext structure.
 
 ---
 
-## 🌐 Przestrzenie nazw i walidacja
+## 📂 Repository Contents
 
-Dokument XML używa przestrzeni nazw:
+- **`ksiazki.xml`** – the main XML document describing the reading hobby:
+  - author data (metadata),
+  - reading summary and statistics,
+  - favorite genres along with authors,
+  - a list of books containing:
+    - full bibliographic data,
+    - references to multimedia elements,
+    - links (hypertext) to reviews / videos,
+    - attributes for rating, status, etc.
 
-- `xmlns="http://example.org/hobby"` – główna przestrzeń dla wszystkich elementów,
-- `xmlns:h="http://example.org/hobby"` – alias używany np. przy atrybucie `h:jezyk`,
-- `xsi:schemaLocation` wskazuje powiązanie ze schematem XSD.
+- **`ksiazki.dtd`** – DTD definition describing the permissible structure:
+  - document and element model,
+  - content types,
+  - required and optional elements and attributes.
 
-W dokumencie zastosowano:
-
-- **walidację przez XSD** (główna),
-- **zgodność z DTD** (strukturalna).
-
----
-
-## 🧩 Cechy projektu
-
-- Zaawansowana struktura XML obejmująca:
-
-  - zagnieżdżone metadane (np. statystyki roczne, formaty czytania),
-  - strukturę semantyczną (gatunki, autorzy, książki),
-  - odwołania hipertekstowe (linki do stron i materiałów),
-  - elementy multimedialne (okładki, recenzje wideo),
-  - atrybuty kontrolujące semantykę (np. `status`, `ocena`, `jezyk`, `rola`).
-
-- Zastosowanie:
-  - przestrzeni nazw (XML namespaces),
-  - walidacji typów danych w XSD,
-  - atrybutów złożonych i enumeracji,
-  - pełnej walidacji za pomocą pliku `.xsd`.
+- **`ksiazki.xsd`** – XML Schema 1.0 definition:
+  - precise data typing (e.g., numbers, dates, units),
+  - validation of nested structures,
+  - namespace definitions.
 
 ---
 
-## ▶️ Jak uruchomić i zweryfikować XML
+## 🌐 Namespaces and Validation
 
-### 1. Walidacja XSD (np. `xmllint`)
+The XML document uses namespaces:
+
+- `xmlns="http://example.org/hobby"` – the main namespace for all elements,
+- `xmlns:h="http://example.org/hobby"` – an alias used, for example, with the `h:jezyk` attribute,
+- `xsi:schemaLocation` indicates the link to the XSD schema.
+
+The document employs:
+
+- **XSD validation** (primary),
+- **DTD compliance** (structural).
+
+---
+
+## 🧩 Project Features
+
+- Advanced XML structure covering:
+  - nested metadata (e.g., annual statistics, reading formats),
+  - semantic structure (genres, authors, books),
+  - hypertext references (links to pages and materials),
+  - multimedia elements (covers, video reviews),
+  - attributes controlling semantics (e.g., `status`, `ocena`, `jezyk`, `rola`).
+
+- Usage of:
+  - XML namespaces,
+  - data type validation in XSD,
+  - complex attributes and enumerations,
+  - full validation using the `.xsd` file.
+
+---
+
+## ▶️ How to Run and Verify XML
+
+### 1. XSD Validation (e.g., via `xmllint`)
 
 ```bash
 xmllint --noout --schema ksiazki.xsd ksiazki.xml
-```
